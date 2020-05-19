@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Gambar</title>
+    <link rel="shortcut icon" href="image/icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        [v-cloak] {
+        display: none;
+        }
+    </style> 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+<body>
+    <br><br>
+    <div class="container">
+        <div class="card card text-white bg-dark  mb-3">
+            <div class="card-body"> 
+             <h5 class="text-center">
+                 <strong style="color: #f1c40f">
+                    Tebak Gambar
+                 </strong>
+             </h5>
+             <hr>
+            <center>
+                <a href="index.html" class="text-center">Home</a>
+            </center>
+            </div>
+        </div>
+    </div><br>
+
+    <div class="container" id="app" v-cloak>
+         <div class="card text-white bg-secondary  mb-3"> 
+             <div class="card-body"> 
+                <div class="row row-cols-4">
+
+                    <div :id="card.id" style="cursor:grab;"  v-for="card in data_card" @click="openImage($event)" class="col">
+                        <div>
+                            <img :src="card.image" class="rounded mx-auto d-block" width="100" height="120">
+                        </div><br>
+                    </div>
+
+                </div>
+            </div> 
+          </div> 
+    </div>
+    <script src="init.js"></script>
+
+    <script>    
+        new Vue({
+            el : '#app',
+            data : {
+                data_card : card_collection
+            },
+            methods: {
+                openImage : function(){
+                    let div = event.currentTarget
+                    let language = div.id;
+                    language = language.replace('card_','');
+                    language = language.toUpperCase();
+
+                    Swal.fire({
+                        title: language,
+                        text: language,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                }    
+            }
+        })
+    </script>
+
+</body>
+</html>

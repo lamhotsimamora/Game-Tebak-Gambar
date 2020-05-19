@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Gambar</title>
+    <link rel="shortcut icon" href="image/icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        [v-cloak] {
+        display: none;
+        }
+    </style> 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+<body>
+    <br><br>
+    <div class="container" id="score" v-cloak>
+        <div class="card card text-white bg-dark  mb-3">
+            <div class="card-body"> 
+             <h5 class="text-center">
+                 <strong style="color: #f1c40f">
+                    Tebak Gambar
+                 </strong>
+             </h5>
+             <hr>
+             <strong>
+                <h6 class="text-center">Benar  {{ true_selected }} |  Salah {{ wrong }}</h6> 
+                <hr>
+                <h4 class="text-center">
+                    <strong style="color: #d63031;"> {{ time }} </strong>
+                </h4>
+             </strong>
+             <hr>
+            <center>
+                <a href="." class="text-center">Restart</a> |
+                <a href="all_card.html" class="text-center">All</a>
+            </center>
+            </div>
+        </div>
+    </div><br>
+    <div class="container" id="app" v-cloak>
+         <div class="card text-white bg-secondary  mb-3"> 
+             <div class="card-body"> 
+                <div class="row row-cols-4">
+
+                    <div :id="card.id" style="cursor:grab;" :card_index="card.card_index" :index_number="card.image_index" v-for="card in data_card" @click="openImage($event)" class="col">
+                        <div>
+                            <img :src="card.image" class="rounded mx-auto d-block" width="100" height="120">
+                        </div><br>
+                    </div>
+
+                </div>
+            </div> 
+          </div> 
+    </div>
+    <audio id="click_sound">
+        <source src="audio/click.mp3" type="audio/ogg">
+    </audio>
+    <audio id="match_sound">
+        <source src="audio/match.mp3" type="audio/ogg">
+    </audio>
+
+
+    <div class="container">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+              Copyright@2020 | by <a href="https://github.com/lamhotsimamora" target="_blank">Lamhot Simamora</a>
+            </div>
+          </div>
+    </div>
+    <script src="init.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
