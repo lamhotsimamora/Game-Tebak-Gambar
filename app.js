@@ -16,8 +16,30 @@ let $score = new Vue({
         true_selected : 0,
         time  : '00 : 00',
         wrong : 0,
-        final_score : 0
-    }
+        final_score : 0,
+        data_level : [
+            {
+                level : 'easy'
+            },
+            {
+                level : 'medium'
+            },
+            {
+                level : 'advanced'
+            }
+        ],
+        level : null,
+        level_selected : null
+    },
+    methods: {
+        selectLevel: function(){
+            selectLevel(this.level);
+            window.location.href="index.html";
+        }
+    },
+    mounted() {
+        this.level_selected = localStorage.getItem('level_card').toUpperCase();
+    },
 })
 
 let $app = new Vue({
@@ -157,16 +179,16 @@ let $app = new Vue({
         calculateScore: function(){
              let $count_card = this.data_card.length;
              
-             let $persentase = ($score.true_selected / $count_card) * 100;
-             
              let $minute = this.minute*60;
              let $second = this.second;
              
              let sum_minute_second = $minute + $second;
-             
-             let result_score = ( $persentase +  sum_minute_second ) / 10;
 
-             $score.final_score = result_score;
+             let result_score = ( $score.true_selected +  sum_minute_second );
+
+             // score is not valid, i will finish it soon
+             $score.final_score = Math.floor(result_score);
+
         }
         ,
         openCard: function(card_index,image_index){

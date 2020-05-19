@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tebak Gambar</title>
+    <title>Temukan Gambar</title>
     <link rel="shortcut icon" href="image/icon.png">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         [v-cloak] {
         display: none;
         }
     </style> 
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
     <br><br>
@@ -22,7 +22,7 @@
             <div class="card-body"> 
              <h5 class="text-center">
                  <strong style="color: #f1c40f">
-                    Tebak Gambar
+                    Temukan Gambar
                  </strong>
              </h5>
              <hr>
@@ -35,20 +35,29 @@
              </strong>
              <hr>
             <center>
-                <a href="." class="text-center">Restart</a> |
-                <a href="all_card.html" class="text-center">All</a>
+                <a href="index.html" class="text-center"><small>Restart</small></a> |
+                <a href="all_card.html" class="text-center"><small>All</small></a>
             </center>
-            </div>
+            <hr>
+            <div class="form-group">
+                <small>Level - <strong>{{ level_selected }}</strong></small>
+                <select v-model="level" @change="selectLevel" class="form-control form-control-sm">
+                    <option :value="level.level" v-for="level in data_level">{{ level.level.toUpperCase() }}</option>
+                </select>
+              </div>
+            
         </div>
-    </div><br>
+    </div>
+    </div>
+    <br>
     <div class="container" id="app" v-cloak>
-         <div class="card text-white bg-secondary  mb-3"> 
+         <div class="card text-white bg-secondary mb-3"> 
              <div class="card-body"> 
-                <div class="row row-cols-4">
+                <div class="row row-cols-3">
 
                     <div :id="card.id" style="cursor:grab;" :card_index="card.card_index" :index_number="card.image_index" v-for="card in data_card" @click="openImage($event)" class="col">
                         <div>
-                            <img :src="card.image" class="rounded mx-auto d-block" width="100" height="120">
+                            <img :src="card.image" class="rounded mx-auto d-block" width="60" height="90">
                         </div><br>
                     </div>
 
@@ -71,8 +80,10 @@
             </div>
           </div>
     </div>
-    <script src="init.js"></script>
-    <script src="app.js"></script>
+    
+    
+    <script src="init.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
 
 </body>
 </html>

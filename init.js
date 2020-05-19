@@ -73,3 +73,33 @@ const card_default = '/image/card_default.png';
 
 const click_sound = document.getElementById("click_sound"); 
 const match_sound = document.getElementById("match_sound"); 
+
+// check the storage
+
+if (localStorage.getItem('level_card')==null || localStorage.getItem('level_card')== undefined){
+    localStorage.setItem('level_card','easy')
+    selectLevel('easy');
+}else{
+    let level_selected = localStorage.getItem('level_card');
+    selectLevel(level_selected);
+}
+
+function selectLevel($level){
+    switch ($level) {
+        case 'easy':
+            card_collection = card_collection.slice(0,4);
+            localStorage.setItem('level_card','easy')
+            break;
+        case 'medium':
+            card_collection = card_collection.slice(0,8);
+            localStorage.setItem('level_card','medium')
+            break;
+        case 'advanced':
+            card_collection = card_collection;
+            localStorage.setItem('level_card','advanced')
+            break;
+        default:
+            card_collection = card_collection;
+            break;
+    }
+}
